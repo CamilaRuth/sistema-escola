@@ -1,14 +1,51 @@
 const {
-    Aluno
-} = require('../database/models/Aluno');
+    Aluno,
+    Sequelize
+} = require('../database/models');
+const Op = require('sequelize').Op;
 
 const alunoController = {
     index: async (req, res) => {
-        console.log('entrou no controller');
+        //console.log('entrou no controller');
         const alunos = await Aluno.findAll();
 
         return res.json(alunos);
 
+    },
+    filtroAnoMatricula: async (req, res) => {
+        const {
+            ano
+        } = req.params;
+        const alunosFiltrados = await Aluno.findAll({
+            where: {
+                'ano_matricula': ano
+            }
+        });
+
+        return res.json(alunosFiltrados);
+    },
+
+    filtroNome: async (req, res) => {
+        const {
+            nome
+        } = req.params;
+
+        const alunosFiltrados = await Aluno.findAll({
+            where: {
+                [Op.or]: {
+                    nome: {
+                        [Op.like]: `%${nome}%`,
+
+                    },
+                    sobrenome: {
+                        [Op.like]: `%${nome}%`,
+
+                    }
+                }
+            }
+        });
+
+        return res.json(alunosFiltrados);
     }
 
 };

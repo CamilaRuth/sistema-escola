@@ -1,31 +1,26 @@
 module.exports = (sequelize, DataTypes) => {
-    const Aluno = sequelize.define(
-        "Aluno", {
+    const Professor = sequelize.define(
+        "Professor", {
             "id": {
+                type: DataTypes.INTEGER,
                 primaryKey: true,
                 autoIncrement: true,
-                type: DataTypes.INTEGER,
                 allowNull: false
-
             },
             "nome": {
                 type: DataTypes.STRING,
-                allowNull: false,
+                allowNull: false
             },
             "sobrenome": {
                 type: DataTypes.STRING,
                 allowNull: false
-            },
-            "ano_matricula": {
-                type: DataTypes.INTEGER,
-                allowNull: false
-            },
+            }
 
         }, {
-            "tableName": "alunos",
-            "timestamps": true
+            tableName: "professores",
+            timestamps: true
         }
     );
-    return Aluno;
 
+    return Professor;
 }
