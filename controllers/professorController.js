@@ -6,6 +6,7 @@ const {
 const professorController = {
     index: async (req, res) => {
         const professores = await Professor.findAll({
+            include: ['turmas'],
             order: [
                 ['nome', 'ASC']
             ]

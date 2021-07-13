@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-    const Aluno = sequelize.define(
-        "Aluno", {
+    const Curso = sequelize.define(
+        "Curso", {
             "id": {
                 primaryKey: true,
                 autoIncrement: true,
@@ -12,32 +12,30 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.STRING,
                 allowNull: false,
             },
-            "sobrenome": {
-                type: DataTypes.STRING,
-                allowNull: false
-            },
-            "ano_matricula": {
+            "area_id": {
                 type: DataTypes.INTEGER,
                 allowNull: false
-            },
+            }
 
         }, {
-            "tableName": "alunos",
+            "tableName": "cursos",
             "timestamps": true
         }
     );
 
-    Aluno.associate = (models) => {
-        Aluno.belongsToMany(models.Turma, {
+    Curso.associate = (models) => {
+        Curso.belongsTo(models.Area, {
+            as: 'area',
+            foreignKey: 'area_id'
+
+        });
+
+        Curso.hasMany(models.Turma, {
             as: 'turmas',
-            through: 'alunos_has_turmas',
-            foreignKey: 'aluno_id',
-            otherKey: 'turma_id',
-            timestamps: true
+            foreignKey: 'curso_id'
         });
     }
 
-
-    return Aluno;
+    return Curso;
 
 }

@@ -7,7 +7,9 @@ const Op = require('sequelize').Op;
 const alunoController = {
     index: async (req, res) => {
         //console.log('entrou no controller');
-        const alunos = await Aluno.findAll();
+        const alunos = await Aluno.findAll({
+            include: ['turmas']
+        });
 
         return res.json(alunos);
 
