@@ -14,7 +14,9 @@ module.exports = (sequelize, DataTypes) => {
             },
             "area_id": {
                 type: DataTypes.INTEGER,
-                allowNull: false
+                allowNull: false,
+                foreignKey: true
+
             }
 
         }, {
