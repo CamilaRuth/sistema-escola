@@ -60,6 +60,9 @@
                         <td><%= professor.nome %> </td>
                         <td><%= professor.sobrenome %> </td>
                         <td><%= professor.turmas.length %> </td>
+                        <td>
+                            <a href="/professores/<%=professor.id %> " class="btn btn-default">editar</a>
+                        </td>
                     </tr>
                     <% }) %>
                 </tbody>
@@ -82,6 +85,9 @@
                         <td><%= curso.nome %> </td>
                         <td><%= curso.area.tipo %> </td>
                         <td><%= curso.turmas.length %> </td>
+                        <td>
+                            <a href="/cursos/<%= curso.id%>" class="btn btn-default">editar</a>
+                        </td>
                     </tr>
                     <% }) %>
                 </tbody>

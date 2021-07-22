@@ -17,24 +17,26 @@ router.get('/', function (req, res, next) {
 router.get('/alunos', alunoController.index);
 router.get('/alunos/matricula/:ano', alunoController.filtroAnoMatricula);
 router.get('/alunos/nome/:nome', alunoController.filtroNome);
-router.get('/professores', professorController.index);
-router.get('/turma', turmaController.index);
-router.get('/curso', cursoController.index);
-router.get('/area', areaController.index);
 
+router.get('/professores', professorController.index);
 router.post('/professores', professorController.create);
 router.put('/professores/:id', professorController.update);
 router.delete('/professores/:id', professorController.destroy);
 
+router.get('/turma', turmaController.index);
+router.get('/curso', cursoController.index);
+
+
+router.get('/dashboard', indexController.index);
+router.get('/alunos/novo', indexController.novo);
+router.post('alunos/novo', indexController.create);
+router.get('/alunos/:id', indexController.editarAluno);
+router.post('/alunos/:id', indexController.atualizarAluno);
+
+
+router.get('/area', areaController.index);
 router.post('/area', areaController.create);
 router.put('/area/:id', areaController.update);
 router.delete('/area/:id', areaController.destroy);
-
-router.get('/dashboard', indexController.index);
-
-router.get('/alunos/id', indexController.editarAluno);
-
-router.post('/alunos/:id', indexController.atualizarAluno);
-
 
 module.exports = router;
